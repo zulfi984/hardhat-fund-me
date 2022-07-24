@@ -15,7 +15,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
     log("----------------------------------------------------")
     log("Deploying FundMe and waiting for confirmations...")
-    ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
     const fundMe = await deploy("FundMe", {
         from: deployer,
         args: [ethUsdPriceFeedAddress],
