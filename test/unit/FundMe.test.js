@@ -13,7 +13,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
               // const accounts = await ethers.getSigners()
               // deployer = accounts[0]
               deployer = (await getNamedAccounts()).deployer
-              await deployments.fixture(["all"])
+              await deployments.fixture(["all"]) // get all files and runs multiple times of deploy folder
               fundMe = await ethers.getContract("FundMe", deployer)
               mockV3Aggregator = await ethers.getContract(
                   "MockV3Aggregator",
@@ -33,7 +33,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
               // could also do assert.fail
               it("Fails if you don't send enough ETH", async () => {
                   await expect(fundMe.fund()).to.be.revertedWith(
-                      "You need to spend more ETH!"
+                      "You need to spend more ETH!" // a parameter "You need to spend more ETH!" from fundMe.sol
                   )
               })
               // we could be even more precise here by making sure exactly $50 works
@@ -141,7 +141,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                   )
                   await expect(
                       fundMeConnectedContract.withdraw()
-                  ).to.be.revertedWith("FundMe__NotOwner")
+                  ).to.be.revertedWith("FundMe__NotOwner") // FundMe__NotOwner is error exception from FundMe.sol
               })
           })
       })
